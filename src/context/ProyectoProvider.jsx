@@ -46,6 +46,7 @@ const ProyectoProvider = ({ children }) => {
       return { msg: res.data.message, error: false };
     } catch (error) {
       console.log(error);
+      return { msg: error.response.data.message, error: true}
     }
   };
 
@@ -77,6 +78,7 @@ const ProyectoProvider = ({ children }) => {
       return { msg: res.response.data.message, error: false };
     } catch (error) {
       console.log(error);
+      return { msg: error.response.data.message, error: true}
     }
   };
 
@@ -88,6 +90,7 @@ const ProyectoProvider = ({ children }) => {
       return { msg: res.response.data.message, error: false };
     } catch (error) {
       console.log(error);
+      return { msg: error.response.data.message, error: true}
     }
   };
 

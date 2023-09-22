@@ -46,11 +46,14 @@ const Proyectos = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAlerta({});
+  
+    const idtArray = idt.split(',').map((item) => `${item.trim()}`);
+    console.log(idtArray)
+    console.log(idt)
     if (proyectoSelected._id) {
-      // const {msg, error} =
       await editarProyecto(
         proyectoSelected._id,
-        idt,
+        idtArray,
         nombre,
         descripcion,
         empresa,
@@ -58,6 +61,7 @@ const Proyectos = () => {
         fechafin,
         estado
       );
+      console.log("Arreglo:", idtArray)
       setModalIsOpen(false);
       setProyectoSelected([]);
       setAlerta({
@@ -67,7 +71,7 @@ const Proyectos = () => {
       setReload(true);
     } else {
       const { msg, error } = await crearProyecto(
-        idt,
+        idtArray,
         nombre,
         descripcion,
         empresa,
