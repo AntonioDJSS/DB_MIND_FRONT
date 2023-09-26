@@ -101,7 +101,7 @@ const Chat = () => {
                     type={message.type}
                   />
                 ))}
-                <div className="grid grid-cols-2 gap-4">
+                {/* <div className="grid grid-cols-2 gap-4">
                   {categoriasCoincidentes.map((categoria, index) => (
                     <div className="bg-white shadow sm:rounded-lg">
                     <div className="px-4 py-5 sm:p-6">
@@ -131,7 +131,7 @@ const Chat = () => {
                     </div>
 
                   ))}
-                </div>
+                </div> */}
               </>
             ) : (
               <>
@@ -151,7 +151,7 @@ const Chat = () => {
             />
             <button
               type="submit"
-              className="mt-2 px-4 py-2 bg-blue-900 font-medium text-white rounded-lg hover:bg-blue-950 focus:outline-none focus:ring focus:border-blue-300"
+              className="mt-2 px-7 p-3 bg-gray-200 text-gray-900 font-medium duration-200 rounded-2xl hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-300"
             >
               Enviar
             </button>

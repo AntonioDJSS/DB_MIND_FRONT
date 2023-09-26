@@ -32,41 +32,33 @@ const navigation = [
       { name: "Contraseña", href: "/dashboard/password-admin" }
     ],
   },
-  {
-    user: "Admin",
-    name: "Catalogo",
-    icon: ListBulletIcon,
-    current: false,
-    children: [
-      { name: "Buscar", href: "/dashboard" },
-      { name: "Crear", href: "/dashboard/crear" },
-      { name: "Editar", href: "/dashboard/editar-buscar" },
-      { name: "Cargar excel", href: "/dashboard/cargar" },
-    ],
-  },
-  {
-    user: "User",
-    name: "Catalogo",
-    icon: ListBulletIcon,
-    current: false,
-    children: [
-      { name: "Buscar", href: "/dashboard" },
-    ],
-  },
+  // {
+  //   user: "Admin",
+  //   name: "Catalogo",
+  //   icon: ListBulletIcon,
+  //   current: false,
+  //   children: [
+  //     { name: "Buscar", href: "/dashboard" },
+  //     { name: "Crear", href: "/dashboard/crear" },
+  //     { name: "Editar", href: "/dashboard/editar-buscar" },
+  //     { name: "Cargar excel", href: "/dashboard/cargar" },
+  //   ],
+  // },
+  // {
+  //   user: "User",
+  //   name: "Catalogo",
+  //   icon: ListBulletIcon,
+  //   current: false,
+  //   children: [
+  //     { name: "Buscar", href: "/dashboard" },
+  //   ],
+  // },
   {
     name: "Chat",
     href: "/dashboard/chat",
     icon: ChatBubbleBottomCenterIcon,
     current: false,
   },
-  {
-    name: "Proyecto",
-    href: "/dashboard/proyecto",
-    icon: WindowIcon,
-    current: false,
-  },
-
-  
 ];
 
 function classNames(...classes) {
@@ -181,8 +173,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                   to={item.href}
                                   className={classNames(
                                     item.name === currentNavItem
-                                      ? "bg-[#ffc1c8] text-slate-900"
-                                      : "text-slate-200 hover:text-slate-900 hover:bg-[#ffc1c8]",
+                                      ? "bg-white text-slate-900"
+                                      : "text-slate-200 hover:text-slate-900 hover:bg-white",
                                     "group cursor-pointer h-[50px] flex items-center gap-x-3 pl-5 mb-1 relative rounded-full z-10"
                                   )}
                                   onClick={() => handleItemClick(item.name)}
@@ -205,7 +197,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                       <Disclosure.Button
                                         className={classNames(
                                           item.name === currentNavItem
-                                            ? "bg-[#ffc1c8] text-slate-900"
+                                            ? "bg-white text-slate-900"
                                             : "text-slate-200 hover:text-slate-900 hover:bg-slate-100",
                                           "group cursor-pointer h-[50px] w-full flex items-center gap-x-3 pl-5 mb-1 relative rounded-full z-10"
                                         )}
@@ -241,7 +233,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                               to={subItem.href}
                                               className={classNames(
                                                 subItem.name === currentNavItem
-                                                  ? "bg-[#ffc1c8] text-slate-900"
+                                                  ? "bg-white text-slate-900"
                                                   : "text-slate-200 hover:text-slate-900 hover:bg-slate-100",
                                                 "group cursor-pointer h-[50px] flex items-center gap-x-3 pl-5 mb-1 relative rounded-full z-10"
                                               )}
@@ -263,7 +255,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           <li>
                             <a
                               onClick={(e) => handleCerrarSesion(e)}
-                              className="text-[#ffc1c8] hover:text-slate-900 hover:bg-slate-100 group cursor-pointer h-[50px] flex items-center gap-x-3 pl-5 mb-1 relative rounded-full z-10"
+                              className="text-white hover:text-slate-900 hover:bg-slate-100 group cursor-pointer h-[50px] flex items-center gap-x-3 pl-5 mb-1 relative rounded-full z-10"
                             >
                               <KeyIcon className="text-slate-200 group-hover:text-slate-900 h-6 w-6 shrink-0" />
                               Cerrar sesión
@@ -283,11 +275,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       {/* Barra lateral estática para escritorio */}
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
         {/* Componente de barra lateral, intercambie este elemento con otra barra lateral si lo desea */}
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-[#dd102a] px-6">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-cyan-600 px-6">
           <div className="flex pt-10">
           <div className="flex gap-x-4 items-center">
             <img
-              src="https://i.imgur.com/fWWekZ9.png"
+              src="https://imgur.com/fx6bbnG.png"
               className={`cursor-pointer duration-700 h-14 ${
                 open && "rotate-[360deg]"
               }`}
@@ -297,7 +289,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 !open && "scale-0"
               }`}
             >
-              IKTAN Strategies
+              DB <span>WEB</span> MINDS
             </h1>
           </div>
           </div>
@@ -315,7 +307,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         className={classNames(
                           item.name === currentNavItem
                             ? "bg-[#ffffff20] text-slate-100 duration-500 "
-                            : "text-[#ffc1c8] duration-500 hover:text-[#ffc1c8] hover:bg-[#ffffff20]",
+                            : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
                           "group cursor-pointer h-[50px] pl-2  flex items-center gap-x-3  mb-1 relative rounded-md z-10"
                         )}
                         onClick={() => handleItemClick(item.name)}
@@ -325,8 +317,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           <item.icon
                             className={classNames(
                               item.name === currentNavItem
-                                ? "text-[#ffc1c8]"
-                                : "text-[f7cfd4] group-hover:text-[#ffc1c8]",
+                                ? "text-white"
+                                : "text-[f7cfd4] group-hover:text-white",
                               "h-6 w-6 shrink-0"
                             )}
                             aria-hidden="true"
@@ -341,16 +333,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             <Disclosure.Button
                               className={classNames(
                                 item.name === currentNavItem
-                                  ? "bg-[#ffffff20] text-[#ffc1c8] duration-500 "
-                                  : "text-[#ffc1c8] duration-500 hover:text-[#ffc1c8] hover:bg-[#ffffff20]",
+                                  ? "bg-[#ffffff20] text-white duration-500 "
+                                  : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
                                 "group cursor-pointer h-[50px] w-full pl-2 flex items-center gap-x-3 mb-1 relative rounded-md z-10"
                               )}
                             >
                               <item.icon
                                 className={classNames(
                                   item.name === currentNavItem
-                                    ? "text-[#ffc1c8]"
-                                    : "text-[#ffc1c8] group-hover:text-[#ffc1c8]",
+                                    ? "text-white"
+                                    : "text-white group-hover:text-white",
                                   "h-6 w-6 shrink-0"
                                 )}
                                 aria-hidden="true"
@@ -362,7 +354,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                   open
                                     ? "transition ease-in duration-100 ml-auto mr-5 hidden xl:block transform rotate-90"
                                     : "",
-                                  "text-[#ffc1c8] group-hover:text-[#ffc1c8]  ml-auto h-5 w-5 shrink-0 mr-5"
+                                  "text-white group-hover:text-white  ml-auto h-5 w-5 shrink-0 mr-5"
                                 )}
                                 aria-hidden="true"
                               />
@@ -377,7 +369,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                     className={classNames(
                                       subItem.name === currentNavItem
                                         ? "bg-[#ffffff20] text-slate-100 duration-500 "
-                                        : "text-[#ffc1c8] duration-500 hover:text-[#ffc1c8] hover:bg-[#ffffff20]",
+                                        : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
                                       "group cursor-pointer h-[50px] w-full  pl-2 flex items-center gap-x-3 mb-1 relative rounded-md z-10"
                                     )}
                                     onClick={() =>
@@ -398,12 +390,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <li>
                   <Link
                     onClick={(e) => handleCerrarSesion(e)}
-                    className=" text-[#ffc1c8] hover:text-white hover:bg-[#ffffff20] group cursor-pointer duration-500 h-[50px] flex items-center gap-x-3 mb-1 relative rounded-md z-10"
+                    className=" text-white hover:text-white hover:bg-[#ffffff20] group cursor-pointer duration-500 h-[50px] flex items-center gap-x-3 mb-1 relative rounded-md z-10"
                   >
                     <div>
-                      <KeyIcon className="h-6 ml-2 w-6 shrink-0 text-[#ffc1c8] group-hover:text-[#ffc1c8]" />
+                      <KeyIcon className="h-6 ml-2 w-6 shrink-0 text-white group-hover:text-white" />
                     </div>
-                    <div className="text-[#ffc1c8] group-hover:text-[#ffc1c8]">
+                    <div className="text-white group-hover:text-white">
                       <span className={open ? "" : "hidden"}>
                         Cerrar sesión
                       </span>

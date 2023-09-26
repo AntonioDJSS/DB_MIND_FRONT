@@ -125,7 +125,8 @@ export const calculatePasswordStrength = (password) => {
         error: false,
       });
     } catch (error) {
-      setAlerta({ msg: error.response.data.errors[0].msg, error: true });
+      console.log(error)
+      setAlerta({ msg: error.response.data.message, error: true });
     }
   
     setTimeout(() => {

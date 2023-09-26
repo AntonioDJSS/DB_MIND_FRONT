@@ -54,13 +54,13 @@ const ConfirmarCuentaComponent = () => {
 
   return (
     <>
-    <div className="h-screen">
+    <div className="h-screen bg-white">
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <div>
             <img
               className="mx-auto h-12 w-auto"
-              src="https://imgur.com/fWWekZ9.png"
+              src="https://imgur.com/zKLvhxF.png"
               alt="Your Company"
             />
             <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">

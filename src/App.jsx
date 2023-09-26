@@ -43,7 +43,8 @@ function App() {
                 </Route>
 
                 <Route path="/dashboard" element={<PrincipalLayout />}>
-                  <Route index element={<Buscar />} />
+                  {/* <Route index element={<Buscar />} /> */}
+                  <Route index element={<ChatPag />} />
                   <Route path="ver" element={<Ver />} />
                   <Route path="crear" element={<Crear />} />
                   <Route path="editar-buscar" element={<EditarBuscar />} />
