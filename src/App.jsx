@@ -21,7 +21,24 @@ import InformacionAdmin from "./pages/private/Dashboard/Admin/InformacionAdmin";
 import PasswordAdmin from "./pages/private/Dashboard/Admin/PasswordAdmin";
 import Page404 from "./pages/public/Page404";
 import Proyecto from "./pages/private/Dashboard/Proyecto";
+import Landing from "./pages/public/Landing";
 import { ProyectoProvider } from "./context/ProyectoProvider";
+import CrearCurso from "./pages/private/Dashboard/CrearCurso";
+import { CursoProvider } from "./context/CrusoProvider";
+import { ViewCurso } from "./pages/private/Dashboard/ViewCurso";
+import { Curso } from "./pages/private/Dashboard/Curso";
+import RegistroUsuarios from "./pages/private/Dashboard/RegistroUsuarios";
+import CrearEvaluación from "./pages/private/Dashboard/CrearEvaluación";
+import TestConocimiento from "./pages/private/Dashboard/TestConocimiento";
+import ResolverPrueba from "./pages/private/Dashboard/ResolverPrueba";
+import Calificacion from "./pages/private/Dashboard/Calificacion";
+import SobreNosotros from "./pages/public/SobreNosotros";
+import { UsuarioProvider } from "./context/UsuarioProvider";
+import { EvaluacionProvider } from "./context/EvaluacionProvider";
+import Test from "./pages/private/Dashboard/Test";
+import { RespuestaProvider } from "./context/RespuestaProvider";
+import MisRespuestas from "./pages/private/Dashboard/MisRespuestas";
+import AllRespuestas from "./pages/private/Dashboard/AllRespuestas";
 
 function App() {
   return (
@@ -30,13 +47,19 @@ function App() {
         <AuthProvider>
           <TramiteProvider>
             <ProyectoProvider>
+              <CursoProvider>
+                <UsuarioProvider>
+                  <EvaluacionProvider>
+                    <RespuestaProvider>
               <Routes>
                 <Route path="/" element={<AuthLayout />}>
-                  <Route index element={<Login />} />
-                  <Route path="registrar" element={<Registrar />} />
-                  <Route path="olvide-password" element={<OlvidePassword />} />
+                  <Route index element={<Landing />} />
+                  <Route path="sobre-nosotros" element={<SobreNosotros />} />
+                  <Route path="login" element={<Login />} />
+                  <Route path="login/registrar" element={<Registrar />} />
+                  <Route path="login/olvide-password" element={<OlvidePassword />} />
                   <Route
-                    path="olvide-password/:token"
+                    path="login/olvide-password/:token"
                     element={<NuevoPassword />}
                   />
                   <Route path="confirmar/:token" element={<ConfirmarCuenta />} />
@@ -56,10 +79,26 @@ function App() {
                   <Route path="panel-admin" element={<InformacionAdmin />} />
                   <Route path="password-admin" element={<PasswordAdmin />} />
                   <Route path="proyecto" element={<Proyecto />} />
+                  <Route path="crear-curso" element={<CrearCurso />} />
+                  <Route path="cursos" element={<ViewCurso />} />
+                  <Route path="cursos/:id" element={<Curso />} />
+                  <Route path="allusers" element={<RegistroUsuarios />} />
+                  <Route path="crear-evaluacion" element={<CrearEvaluación />} />
+                  <Route path="test-conocimientos" element={<TestConocimiento />} />
+                  <Route path="test-conocimientos/:id" element={<Test />} />
+                  <Route path="calificaciones-list" element={<MisRespuestas />} />
+                  <Route path="calificaciones-list-admin" element={<AllRespuestas />} />
+                  <Route path="evaluacion" element={<ResolverPrueba />} />
+                  <Route path="calificacion" element={<Calificacion />} />
+
                 </Route>
 
                 <Route path="*" element={<Page404 />} />
               </Routes>
+              </RespuestaProvider>
+              </EvaluacionProvider>
+              </UsuarioProvider>
+              </CursoProvider>
             </ProyectoProvider>
           </TramiteProvider>
         </AuthProvider>

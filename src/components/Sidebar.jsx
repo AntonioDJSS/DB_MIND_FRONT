@@ -1,63 +1,84 @@
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import {
   ChevronRightIcon,
-  KeyIcon,
-  ListBulletIcon,
-  PhotoIcon,
+  PuzzlePieceIcon,
+  MagnifyingGlassPlusIcon,
+  PowerIcon,
   WindowIcon,
   XMarkIcon,
+  CogIcon,
 } from "@heroicons/react/24/outline";
-import { Fragment,  useState } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import { ChatBubbleBottomCenterIcon } from "@heroicons/react/20/solid";
 
 const navigation = [
   {
-    user: "User",
-    name: "Usuario",
-    href: "/dashboard/panel-user",
-    icon: PhotoIcon,
+    user: "Admin",
+    name: "Administración",
+    icon: WindowIcon,
+    current: false,
     children: [
-      { name: "Datos", href: "/dashboard/panel-user" },
-      { name: "Contraseña", href: "/dashboard/password-user" }
+      { name: "Usuarios registrados", href: "/dashboard/allusers" },
+      { name: "All Calificaciones", href: "/dashboard/calificaciones-list-admin" },
+      { name: "Mis calificaciones", href: "/dashboard/calificaciones-list" },
+    ],
+  },
+  {
+    user: "User",
+    name: "Administración",
+    icon: WindowIcon,
+    current: false,
+    children: [
+      { name: "Mis calificaciones", href: "/dashboard/calificaciones-list" },
     ],
   },
   {
     user: "Admin",
-    name: "Usuario",
-    icon: PhotoIcon,
+    name: "Aprendizaje",
+    icon: PuzzlePieceIcon,
+    current: false,
     children: [
-      { name: "Datos", href: "/dashboard/panel-admin" },
-      { name: "Contraseña", href: "/dashboard/password-admin" }
+      { name: "Crear modulo", href: "/dashboard/crear-curso" },
+      { name: "Crear evaluación", href: "/dashboard/crear-evaluacion" },
+      { name: "Modulos de aprendizaje", href: "/dashboard/cursos" },
+      { name: "Test de conocimientos", href: "/dashboard/test-conocimientos" },
     ],
   },
-  // {
-  //   user: "Admin",
-  //   name: "Catalogo",
-  //   icon: ListBulletIcon,
-  //   current: false,
-  //   children: [
-  //     { name: "Buscar", href: "/dashboard" },
-  //     { name: "Crear", href: "/dashboard/crear" },
-  //     { name: "Editar", href: "/dashboard/editar-buscar" },
-  //     { name: "Cargar excel", href: "/dashboard/cargar" },
-  //   ],
-  // },
-  // {
-  //   user: "User",
-  //   name: "Catalogo",
-  //   icon: ListBulletIcon,
-  //   current: false,
-  //   children: [
-  //     { name: "Buscar", href: "/dashboard" },
-  //   ],
-  // },
   {
-    name: "Chat",
-    href: "/dashboard/chat",
-    icon: ChatBubbleBottomCenterIcon,
+    user: "User",
+    name: "Aprendizaje",
+    icon: PuzzlePieceIcon,
     current: false,
+    children: [
+      { name: "Modulos de aprendizaje", href: "/dashboard/cursos" },
+      { name: "Test de conocimientos", href: "/dashboard/test-conocimientos" },
+    ],
+  },
+  {
+    name: "Asistente inteligente",
+    href: "/dashboard/chat",
+    icon: MagnifyingGlassPlusIcon,
+    current: false,
+  },
+  {
+    user: "User",
+    name: "Configuración",
+    href: "/dashboard/panel-user",
+    icon: CogIcon,
+    children: [
+      { name: "Mi perfil", href: "/dashboard/panel-user" },
+      { name: "Cambiar contraseña", href: "/dashboard/password-user" },
+    ],
+  },
+  {
+    user: "Admin",
+    name: "Configuración",
+    icon: CogIcon,
+    children: [
+      { name: "Mi perfil", href: "/dashboard/panel-admin" },
+      { name: "Cambiar contraseña", href: "/dashboard/password-admin" },
+    ],
   },
 ];
 
@@ -68,6 +89,7 @@ function classNames(...classes) {
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { auth, cerrarSesion } = useAuth();
+  console.log("Este es el side", auth);
 
   // Filtra el arreglo 'navigation' según el rol del usuario
   const filteredNavigation = navigation.filter((item) => {
@@ -76,9 +98,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       return item.user !== "User";
     } else {
       // Ocultar el elemento "Tramite" para usuarios de tipo "User"
-      return (
-        item.user !== "Admin" 
-      );
+      return item.user !== "Admin";
     }
   });
 
@@ -257,7 +277,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               onClick={(e) => handleCerrarSesion(e)}
                               className="text-white hover:text-slate-900 hover:bg-slate-100 group cursor-pointer h-[50px] flex items-center gap-x-3 pl-5 mb-1 relative rounded-full z-10"
                             >
-                              <KeyIcon className="text-slate-200 group-hover:text-slate-900 h-6 w-6 shrink-0" />
+                              <PowerIcon className="text-slate-200 group-hover:text-slate-900 h-6 w-6 shrink-0" />
                               Cerrar sesión
                             </a>
                           </li>
@@ -277,134 +297,154 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         {/* Componente de barra lateral, intercambie este elemento con otra barra lateral si lo desea */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-cyan-600 px-6">
           <div className="flex pt-10">
-          <div className="flex gap-x-4 items-center">
-            <img
-              src="https://imgur.com/fx6bbnG.png"
-              className={`cursor-pointer duration-700 h-14 ${
-                open && "rotate-[360deg]"
-              }`}
-            />
-            <h1
-              className={`text-white origin-left font-medium text-xl duration-400 ${
-                !open && "scale-0"
-              }`}
-            >
-              DB <span>WEB</span> MINDS
-            </h1>
-          </div>
+            <div className="flex gap-x-4 items-center">
+              <img
+                src="https://imgur.com/fx6bbnG.png"
+                className={`cursor-pointer duration-700 h-14 ${
+                  open && "rotate-[360deg]"
+                }`}
+              />
+              <h1
+                className={`text-white origin-left font-medium text-xl duration-400 ${
+                  !open && "scale-0"
+                }`}
+              >
+                DB <span>WEB</span> MINDS
+              </h1>
+            </div>
           </div>
           <div className="w-full h-px bg-white/10 relative"></div>
+          <a href="#" className="group block flex-shrink-0">
+            <div className="flex items-center">
+              <div>
+                <img
+                  className="inline-block h-9 w-9 rounded-full"
+                  src={`${auth.img}`}
+                  alt=""
+                />
+              </div>
+              <div className="ml-3">
+                <p className="text-sm duration-500 font-medium text-white group-hover:text-white/60">
+                  {auth.nombre}
+                </p>
+                <p className="text-xs font-medium duration-500 text-gray-200 group-hover:text-gray-200">
+                  {auth.correo}
+                </p>
+              </div>
+            </div>
+          </a>
+          <div className="w-full h-px bg-white/10 relative"></div>
           <nav className="flex flex-1 flex-col">
-          <ul role="list" className="">
-            <li>
-              <ul role="list" className="">
-                {filteredNavigation.map((item, index) => (
-                  <li key={item.name}>
-                    {!item.children ? (
-                      <Link
-                        // text-gray-400 group-hover:text-slate-100
-                        // hover:text-white hover:bg-gray-800
-                        className={classNames(
-                          item.name === currentNavItem
-                            ? "bg-[#ffffff20] text-slate-100 duration-500 "
-                            : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
-                          "group cursor-pointer h-[50px] pl-2  flex items-center gap-x-3  mb-1 relative rounded-md z-10"
-                        )}
-                        onClick={() => handleItemClick(item.name)}
-                        to={item.href}
-                      >
-                        <div>
-                          <item.icon
-                            className={classNames(
-                              item.name === currentNavItem
-                                ? "text-white"
-                                : "text-[f7cfd4] group-hover:text-white",
-                              "h-6 w-6 shrink-0"
-                            )}
-                            aria-hidden="true"
-                          />
-                        </div>
-                        {open && item.name}
-                      </Link>
-                    ) : (
-                      <Disclosure as="div">
-                        {({ open }) => (
-                          <>
-                            <Disclosure.Button
+            <ul role="list" className="">
+              <li>
+                <ul role="list" className="">
+                  {filteredNavigation.map((item, index) => (
+                    <li key={item.name}>
+                      {!item.children ? (
+                        <Link
+                          // text-gray-400 group-hover:text-slate-100
+                          // hover:text-white hover:bg-gray-800
+                          className={classNames(
+                            item.name === currentNavItem
+                              ? "bg-[#ffffff20] text-slate-100 duration-500 "
+                              : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
+                            "group cursor-pointer h-[50px] pl-2  flex items-center gap-x-3  mb-1 relative rounded-md z-10"
+                          )}
+                          onClick={() => handleItemClick(item.name)}
+                          to={item.href}
+                        >
+                          <div>
+                            <item.icon
                               className={classNames(
                                 item.name === currentNavItem
-                                  ? "bg-[#ffffff20] text-white duration-500 "
-                                  : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
-                                "group cursor-pointer h-[50px] w-full pl-2 flex items-center gap-x-3 mb-1 relative rounded-md z-10"
+                                  ? "text-white"
+                                  : "text-[f7cfd4] group-hover:text-white",
+                                "h-6 w-6 shrink-0"
                               )}
-                            >
-                              <item.icon
+                              aria-hidden="true"
+                            />
+                          </div>
+                          {open && item.name}
+                        </Link>
+                      ) : (
+                        <Disclosure as="div">
+                          {({ open }) => (
+                            <>
+                              <Disclosure.Button
                                 className={classNames(
                                   item.name === currentNavItem
-                                    ? "text-white"
-                                    : "text-white group-hover:text-white",
-                                  "h-6 w-6 shrink-0"
+                                    ? "bg-[#ffffff20] text-white duration-500 "
+                                    : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
+                                  "group cursor-pointer h-[50px] w-full pl-2 flex items-center gap-x-3 mb-1 relative rounded-md z-10"
                                 )}
-                                aria-hidden="true"
-                              />
-                              {item.name}
-                              <ChevronRightIcon
-                                // Trancisión de flechas
-                                className={classNames(
-                                  open
-                                    ? "transition ease-in duration-100 ml-auto mr-5 hidden xl:block transform rotate-90"
-                                    : "",
-                                  "text-white group-hover:text-white  ml-auto h-5 w-5 shrink-0 mr-5"
-                                )}
-                                aria-hidden="true"
-                              />
-                            </Disclosure.Button>
-                            {/* Panel de las categorias desplegables */}
-                            <Disclosure.Panel as="ul" className="mt-1 pl-8">
-                              {item.children.map((subItem) => (
-                                <li key={`${subItem.name}-${index}`}>
-                                  {/* 44px */}
-                                  <Link
-                                    to={subItem.href}
-                                    className={classNames(
-                                      subItem.name === currentNavItem
-                                        ? "bg-[#ffffff20] text-slate-100 duration-500 "
-                                        : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
-                                      "group cursor-pointer h-[50px] w-full  pl-2 flex items-center gap-x-3 mb-1 relative rounded-md z-10"
-                                    )}
-                                    onClick={() =>
-                                      setCurrentNavItem(subItem.name)
-                                    }
-                                  >
-                                    <div>{subItem.name}</div>
-                                  </Link>
-                                </li>
-                              ))}
-                            </Disclosure.Panel>
-                          </>
-                        )}
-                      </Disclosure>
-                    )}
+                              >
+                                <item.icon
+                                  className={classNames(
+                                    item.name === currentNavItem
+                                      ? "text-white"
+                                      : "text-white group-hover:text-white",
+                                    "h-6 w-6 shrink-0"
+                                  )}
+                                  aria-hidden="true"
+                                />
+                                {item.name}
+                                <ChevronRightIcon
+                                  // Trancisión de flechas
+                                  className={classNames(
+                                    open
+                                      ? "transition ease-in duration-100 ml-auto mr-5 hidden xl:block transform rotate-90"
+                                      : "",
+                                    "text-white group-hover:text-white  ml-auto h-5 w-5 shrink-0 mr-5"
+                                  )}
+                                  aria-hidden="true"
+                                />
+                              </Disclosure.Button>
+                              {/* Panel de las categorias desplegables */}
+                              <Disclosure.Panel as="ul" className="mt-1 pl-8">
+                                {item.children.map((subItem) => (
+                                  <li key={`${subItem.name}-${index}`}>
+                                    {/* 44px */}
+                                    <Link
+                                      to={subItem.href}
+                                      className={classNames(
+                                        subItem.name === currentNavItem
+                                          ? "bg-[#ffffff20] text-slate-100 duration-500 "
+                                          : "text-white duration-500 hover:text-white hover:bg-[#ffffff20]",
+                                        "group cursor-pointer h-[50px] w-full  pl-2 flex items-center gap-x-3 mb-1 relative rounded-md z-10"
+                                      )}
+                                      onClick={() =>
+                                        setCurrentNavItem(subItem.name)
+                                      }
+                                    >
+                                      <div>{subItem.name}</div>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </Disclosure.Panel>
+                            </>
+                          )}
+                        </Disclosure>
+                      )}
+                    </li>
+                  ))}
+                  <li>
+                    <Link
+                      onClick={(e) => handleCerrarSesion(e)}
+                      className=" text-white hover:text-white hover:bg-[#ffffff20] group cursor-pointer duration-500 h-[50px] flex items-center gap-x-3 mb-1 relative rounded-md z-10"
+                    >
+                      <div>
+                        <PowerIcon className="h-6 ml-2 w-6 shrink-0 text-white group-hover:text-white" />
+                      </div>
+                      <div className="text-white group-hover:text-white">
+                        <span className={open ? "" : "hidden"}>
+                          Cerrar sesión
+                        </span>
+                      </div>
+                    </Link>
                   </li>
-                ))}
-                <li>
-                  <Link
-                    onClick={(e) => handleCerrarSesion(e)}
-                    className=" text-white hover:text-white hover:bg-[#ffffff20] group cursor-pointer duration-500 h-[50px] flex items-center gap-x-3 mb-1 relative rounded-md z-10"
-                  >
-                    <div>
-                      <KeyIcon className="h-6 ml-2 w-6 shrink-0 text-white group-hover:text-white" />
-                    </div>
-                    <div className="text-white group-hover:text-white">
-                      <span className={open ? "" : "hidden"}>
-                        Cerrar sesión
-                      </span>
-                    </div>
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                </ul>
+              </li>
+            </ul>
           </nav>
         </div>
       </div>

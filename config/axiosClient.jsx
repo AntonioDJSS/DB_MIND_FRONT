@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create(
     {
-        baseURL: "https://dbwebmind.onrender.com/api",
+        baseURL: "http://localhost:8080/api",
 
     }
 );

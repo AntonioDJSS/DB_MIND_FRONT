@@ -86,7 +86,25 @@ const Chat = () => {
             </li>
           </ol>
         </nav>
-        <div className="flex flex-col max-h-full bg-white rounded-lg shadow">
+        <div className="bg-white px-6 py-5 sm:py-5 lg:px-5">
+              <div className="mx-auto max-w-2xl text-center">
+                <p className="text-base font-semibold leading-7 text-cyan-500">
+                  Bienvenido a tú asistente inteligente
+                </p>
+                <h2 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                   Asistente Inteligente
+                </h2>
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  Bienvenido a tú asistente inteligente, podras hacerle cualquier pregunta relacionada a los modulos de BD WEB MINDS y te respondera todas tus dudas.
+                  <span className="font-medium italic">
+                    {" "}
+                    
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="border-b mb-6 border-1 h-1"></div>
+        <div className="flex shadow-xl border shadow-black/5 hover:shadow-2xl duration-500 flex-col max-h-full bg-white rounded-lg ">
           <div className="flex flex-col flex-1 p-4 overflow-y-scroll">
             {isLoading ? (
               <div className="text-center text-gray-700 py-2">
@@ -151,7 +169,7 @@ const Chat = () => {
             />
             <button
               type="submit"
-              className="mt-2 px-7 p-3 bg-gray-200 text-gray-900 font-medium duration-200 rounded-2xl hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-300"
+              className="my-4 px-7 p-3 bg-gray-200 text-gray-900 font-medium duration-200 rounded-2xl hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-300"
             >
               Enviar
             </button>

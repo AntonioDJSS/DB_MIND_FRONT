@@ -9,7 +9,7 @@ import Alerta from "../Alerta";
 
 const Perfil = () => {
   const { auth, actualizarPerfil } = useAuth();
-  console.log(auth);
+  console.log("Hola", auth);
 
   const [alerta, setAlerta] = useState({});
   const [nombre, setNombre] = useState("");

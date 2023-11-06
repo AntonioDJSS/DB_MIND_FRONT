@@ -70,25 +70,25 @@ const NuevoPasswordForm = () => {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center py-12 bg-blue-600/20 h-screen sm:px-6 lg:px-8">
+          {msg && <Alerta alerta={alerta} />}
+
+      <div className="flex min-h-full flex-1 flex-col justify-center py-12 bg-white/40 h-screen sm:px-6 lg:px-8">
         <img
-          className="absolute w-full h-full inset-0 blur-sm opacity-[0.15] object-cover hidden md:block"
-          src="https://img.freepik.com/foto-gratis/silos-agricolas-exterior-edificio_146671-19102.jpg?w=740&t=st=1688412992~exp=1688413592~hmac=0d0abcd5b26eda6ff4f8faab0e94660c3bf69b7ad1ee1096bc852653f1831aa3"
+          className="absolute w-full h-full inset-0 opacity-10 object-cover hidden md:block"
+          src="https://imgur.com/0IxIXNB.png"
           alt=""
         />
-        <div className="relative mt-2 mx-auto sm:w-full sm:max-w-[480px]">
-          <div className="bg-white px-6 py-5 shadow sm:rounded-lg sm:px-12">
+        <div className=" relative mt-4 mx-auto sm:w-full sm:max-w-[480px]">
+          <div className="bg-white hover:scale-105 duration-300 px-6 py-5 shadow-md shadow-black/5 sm:rounded-3xl sm:px-12">
             <img
-              className="mx-auto h-14 w-auto"
-              src="https://iktanstrategies.com/LogoStrategies.png"
+              className="mx-auto h-20 m-3 w-auto"
+              src="https://imgur.com/zKLvhxF.png"
               alt="Your Company"
             />
             <h2 className="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Restablece tu password y no pierdas tu acceso
             </h2>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              {msg && <Alerta alerta={alerta} />}
-
               {tokenValido && (
                 <form
                   onSubmit={handleSubmit}
@@ -96,16 +96,14 @@ const NuevoPasswordForm = () => {
                   action="#"
                   method="POST"
                 >
-                  <div>
-                    <div className="flex items-center justify-between">
+                  <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 ">
                       <label
                         htmlFor="password"
-                        className="block text-sm font-medium leading-6 text-gray-900"
+                        className="block text-xs font-medium text-gray-900"
                       >
                         Nuevo password:
                       </label>
                       <div className="text-sm"></div>
-                    </div>
                     <div className="mt-2">
                       <input
                         id="password"
@@ -115,21 +113,19 @@ const NuevoPasswordForm = () => {
                         required=""
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="block w-full rounded-md pl-2 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 pr-10"
                       />
                     </div>
                   </div>
 
-                  <div>
-                    <div className="flex items-center justify-between">
+                  <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 ">
                       <label
                         htmlFor="repetir-password"
-                        className="block text-sm font-medium leading-6 text-gray-900"
+                        className="block text-xs font-medium text-gray-900"
                       >
                         Repetir password:
                       </label>
                       <div className="text-sm"></div>
-                    </div>
                     <div className="mt-2">
                       <input
                         id="repetir-password"
@@ -139,18 +135,18 @@ const NuevoPasswordForm = () => {
                         required=""
                         value={comprobarPassword}
                         onChange={(e) => setComprobarPassword(e.target.value)}
-                        className="block w-full rounded-md pl-2 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 pr-10"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <button
-                      type="submit"
-                      className="flex w-full justify-center rounded-md bg-[#3366CC] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-slate-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                      Guardar nuevo password
-                    </button>
+                  <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-3xl bg-cyan-700 hover:scale-95 px-3 py-4 text-sm font-semibold leading-6 duration-300 hover:duration-300 text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Actualizar contraseña
+                </button>
                   </div>
                 </form>
               )}
