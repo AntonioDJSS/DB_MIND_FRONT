@@ -96,11 +96,15 @@ export const Curso = () => {
                         <div className="mt-10 grid grid-cols-1 gap-y-16 lg:grid-cols-1 lg:gap-x-8">
                           <div>
                             <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
-                              <img
+                              <iframe
+                                width="560"
+                                height="315"
                                 src={`${curso.modulo1.imagen}`}
-                                alt="Drawstring top with elastic loop closure and textured interior padding."
-                                className="h-full w-full object-cover object-center"
-                              />
+                                title="YouTube Video"
+                                frameborder="0"
+                                allowfullscreen
+                                className="h-full w-full"
+                              ></iframe>
                             </div>
                             <p className="mt-8 text-lg">
                               <span className="font-semibold text-cyan-500">
