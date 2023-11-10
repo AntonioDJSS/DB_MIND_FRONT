@@ -31,6 +31,14 @@ export const Curso = () => {
     mostrarCurso();
   }, [id]);
 
+  function getYouTubeVideoId(url) {
+    const match = url.match(/\/embed\/([A-Za-z0-9_-]+)/);
+    if (match) {
+      return match[1];
+    }
+    return null;
+  }
+
   return (
     <>
       <div className="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
@@ -100,7 +108,7 @@ export const Curso = () => {
                             <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
                             <div className="mt-8">
                       <YouTube
-                        videoId={curso.modulo1.imagen}
+                        videoId={getYouTubeVideoId(curso.modulo1.imagen)}
                         opts={{
                           height: "315",
                           width: "560",
