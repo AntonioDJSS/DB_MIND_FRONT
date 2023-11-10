@@ -108,7 +108,7 @@ export const Curso = () => {
                             <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
                             <div className="mt-8">
                       <YouTube
-                        videoId={getYouTubeVideoId(curso.modulo1.imagen)}
+                        videoId={curso.modulo1.imagen}
                         opts={{
                           height: "315",
                           width: "560",
