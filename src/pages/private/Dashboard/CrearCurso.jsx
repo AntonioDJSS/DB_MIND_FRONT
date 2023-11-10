@@ -315,7 +315,7 @@ function CrearCurso() {
                             className="block text-xs font-medium text-gray-900"
                             htmlFor="imagenModulo1"
                           >
-                            Imagen del módulo:
+                            Inserta el id del video de youtube:
                           </label>
                           <input
                             className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
