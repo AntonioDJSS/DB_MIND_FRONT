@@ -104,7 +104,7 @@ export const Curso = () => {
                         </div>
                         <div class=" mt-10 border-t border-black/5"></div>
                         <div className="mt-10 grid grid-cols-1 gap-y-16 lg:grid-cols-1 lg:gap-x-8">
-                          <div>
+                          <div flex>
                             <div className="flex items-center justify-center">
                               <div className="aspect-h-1 aspect-w-3 w-full">
                                 <YouTube
