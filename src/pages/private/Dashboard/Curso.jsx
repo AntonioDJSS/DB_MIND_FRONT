@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useCurso from "../../../hooks/useCurso";
 import { useParams } from "react-router-dom";
-import {
-  EnvelopeIcon,
-  PhoneIcon,
-  ChevronRightIcon,
-} from "@heroicons/react/20/solid";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 export const Curso = () => {
   const [curso, setCurso] = useState(null);
@@ -26,7 +22,7 @@ export const Curso = () => {
   }, [id]);
 
   useEffect(() => {
-    const url = curso.modulo1.imagen;
+    const url = curso && curso.modulo1 ? curso.modulo1.imagen : "";
     const videoId = url.match(/\/embed\/([A-Za-z0-9_-]+)/)[1];
     // Función para crear el reproductor de YouTube
     function onYouTubeIframeAPIReady() {
@@ -58,7 +54,8 @@ export const Curso = () => {
     if (
       typeof YT !== "undefined" &&
       typeof YT.Player !== "undefined" &&
-      curso
+      curso &&
+      curso.modulo1
     ) {
       onYouTubeIframeAPIReady();
     } else {
