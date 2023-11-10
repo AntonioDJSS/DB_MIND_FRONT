@@ -25,8 +25,6 @@ export const Curso = () => {
     mostrarCurso();
   }, [id]);
 
-  console.log(response);
-
   useEffect(() => {
     const url = curso.modulo1.imagen;
     const videoId = url.match(/\/embed\/([A-Za-z0-9_-]+)/)[1];
