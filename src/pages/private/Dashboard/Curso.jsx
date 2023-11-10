@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import useCurso from "../../../hooks/useCurso";
 import { useParams } from "react-router-dom";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/20/solid";
 
 export const Curso = () => {
   const [curso, setCurso] = useState(null);
@@ -12,7 +16,11 @@ export const Curso = () => {
     const mostrarCurso = async () => {
       try {
         const response = await obtenerCurso(id);
-        setCurso(response);
+        console.log("Response:", response); // Agrega un log para ver la respuesta
+
+        const data = response; // No es necesario response.data
+        console.log("Data:", data); // Agrega un log para ver los datos
+        setCurso(data);
       } catch (error) {
         console.error("Error al cargar el curso:", error);
       }
@@ -20,55 +28,6 @@ export const Curso = () => {
 
     mostrarCurso();
   }, [id]);
-
-  useEffect(() => {
-    const url = curso && curso.modulo1 ? curso.modulo1.imagen : "";
-    const videoId = url.match(/\/embed\/([A-Za-z0-9_-]+)/)[1];
-    // Función para crear el reproductor de YouTube
-    function onYouTubeIframeAPIReady() {
-      new YT.Player("player", {
-        height: "315",
-        width: "560",
-        videoId: videoId, // Reemplaza con el ID del video de YouTube
-        playerVars: {
-          autoplay: 1,
-        },
-        events: {
-          onReady: onPlayerReady,
-          onStateChange: onPlayerStateChange,
-        },
-      });
-    }
-
-    // Función para manejar el reproductor cuando está listo
-    function onPlayerReady(event) {
-      event.target.playVideo();
-    }
-
-    // Función para manejar los cambios de estado del reproductor
-    function onPlayerStateChange(event) {
-      // Puedes agregar lógica adicional aquí si es necesario
-    }
-
-    // Verifica si la API de YouTube ya está disponible
-    if (
-      typeof YT !== "undefined" &&
-      typeof YT.Player !== "undefined" &&
-      curso &&
-      curso.modulo1
-    ) {
-      onYouTubeIframeAPIReady();
-    } else {
-      // Si la API de YouTube no está disponible, intenta cargarla de forma asíncrona
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // Establece una función global para que se llame una vez que la API esté cargada
-      window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-    }
-  }, [curso]);
 
   return (
     <>
@@ -115,7 +74,7 @@ export const Curso = () => {
               {/* Comienza el mapeo */}
               {curso ? (
                 <div>
-                  <div className="player">
+                  <div className="">
                     <div className="mx-auto max-w-2xl px-4 py-5 sm:px-6  lg:max-w-7xl lg:px-8">
                       {/* Details section */}
                       <section aria-labelledby="details-heading">
@@ -137,15 +96,18 @@ export const Curso = () => {
                         <div className="mt-10 grid grid-cols-1 gap-y-16 lg:grid-cols-1 lg:gap-x-8">
                           <div>
                             <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
-                              <iframe
-                                width="560"
-                                height="315"
-                                src={`${curso.modulo1.imagen}`}
-                                title="YouTube Video"
-                                frameborder="0"
-                                allowfullscreen
-                                className="h-full w-full"
-                              ></iframe>
+                            <div className="mt-8">
+                      <YouTube
+                        videoId={curso.modulo1.imagen}
+                        opts={{
+                          height: "315",
+                          width: "560",
+                          playerVars: {
+                            autoplay: 1,
+                          },
+                        }}
+                      />
+                    </div>
                             </div>
                             <p className="mt-8 text-lg">
                               <span className="font-semibold text-cyan-500">
