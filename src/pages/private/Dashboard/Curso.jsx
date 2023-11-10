@@ -108,9 +108,9 @@ export const Curso = () => {
                             <div className="flex items-center justify-center">
                               <div className="aspect-h-1 aspect-w-3 w-full">
                                 <YouTube
-                                  videoId={getYouTubeVideoId(
+                                  videoId={
                                     curso.modulo1.imagen
-                                  )}
+                                  }
                                   opts={{
                                     height: "395", // Ajusta la altura según tus necesidades
                                     width: "700", // Ajusta el ancho según tus necesidades
