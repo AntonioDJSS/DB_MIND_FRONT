@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import useCurso from "../../../hooks/useCurso";
 import { useParams } from "react-router-dom";
+import YouTube from "react-youtube"; // Importa la librería react-youtube
+
 import {
   EnvelopeIcon,
   PhoneIcon,
