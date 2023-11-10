@@ -105,19 +105,19 @@ export const Curso = () => {
                         <div class=" mt-10 border-t border-black/5"></div>
                         <div className="mt-10 grid grid-cols-1 gap-y-16 lg:grid-cols-1 lg:gap-x-8">
                           <div>
-                            <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
-                            <div className="mt-8">
-                      <YouTube
-                        videoId={curso.modulo1.imagen}
-                        opts={{
-                          height: "315",
-                          width: "560",
-                          playerVars: {
-                            autoplay: 1,
-                          },
-                        }}
-                      />
-                    </div>
+                            <div className="flex items-center justify-center">
+                              <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
+                                <YouTube
+                                  videoId={curso.modulo1.imagen}
+                                  opts={{
+                                    height: "395",
+                                    width: "700",
+                                    playerVars: {
+                                      autoplay: 1,
+                                    },
+                                  }}
+                                />
+                              </div>
                             </div>
                             <p className="mt-8 text-lg">
                               <span className="font-semibold text-cyan-500">
