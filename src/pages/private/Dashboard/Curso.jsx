@@ -106,12 +106,14 @@ export const Curso = () => {
                         <div className="mt-10 grid grid-cols-1 gap-y-16 lg:grid-cols-1 lg:gap-x-8">
                           <div>
                             <div className="flex items-center justify-center">
-                              <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
+                              <div className="aspect-h-1 aspect-w-3 w-full">
                                 <YouTube
-                                  videoId={curso.modulo1.imagen}
+                                  videoId={getYouTubeVideoId(
+                                    curso.modulo1.imagen
+                                  )}
                                   opts={{
-                                    height: "395",
-                                    width: "700",
+                                    height: "395", // Ajusta la altura según tus necesidades
+                                    width: "700", // Ajusta el ancho según tus necesidades
                                     playerVars: {
                                       autoplay: 1,
                                     },
