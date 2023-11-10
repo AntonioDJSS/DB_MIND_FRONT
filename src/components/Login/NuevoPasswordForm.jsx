@@ -50,7 +50,7 @@ const NuevoPasswordForm = () => {
     }
 
     try {
-      const url = `http://localhost:8080/api/auth/olvide-password/${token}`;
+      const url = `https://whale-app-frgd7.ondigitalocean.app/api/auth/olvide-password/${token}`;
 
       const { data } = await axiosClient.post(url, { password });
       setAlerta({

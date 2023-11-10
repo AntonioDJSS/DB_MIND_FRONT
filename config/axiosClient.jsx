@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosClient = axios.create(
     {
-        baseURL: "http://localhost:8080/api",
+        baseURL: "https://whale-app-frgd7.ondigitalocean.app/api",
 
     }
 );
