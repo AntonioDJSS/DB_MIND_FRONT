@@ -25,13 +25,17 @@ export const Curso = () => {
     mostrarCurso();
   }, [id]);
 
+  console.log(response);
+
   useEffect(() => {
+    const url = curso.modulo1.imagen;
+    const videoId = url.match(/\/embed\/([A-Za-z0-9_-]+)/)[1];
     // Función para crear el reproductor de YouTube
     function onYouTubeIframeAPIReady() {
       new YT.Player("player", {
         height: "315",
         width: "560",
-        videoId: curso.modulo1.videoId, // Reemplaza con el ID del video de YouTube
+        videoId: videoId, // Reemplaza con el ID del video de YouTube
         playerVars: {
           autoplay: 1,
         },
@@ -53,7 +57,11 @@ export const Curso = () => {
     }
 
     // Verifica si la API de YouTube ya está disponible
-    if (typeof YT !== "undefined" && typeof YT.Player !== "undefined" && curso) {
+    if (
+      typeof YT !== "undefined" &&
+      typeof YT.Player !== "undefined" &&
+      curso
+    ) {
       onYouTubeIframeAPIReady();
     } else {
       // Si la API de YouTube no está disponible, intenta cargarla de forma asíncrona
