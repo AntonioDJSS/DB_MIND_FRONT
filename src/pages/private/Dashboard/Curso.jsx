@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useCurso from "../../../hooks/useCurso";
 import { useParams } from "react-router-dom";
-import {
-  EnvelopeIcon,
-  PhoneIcon,
-  ChevronRightIcon,
-} from "@heroicons/react/20/solid";
 
 export const Curso = () => {
   const [curso, setCurso] = useState(null);
@@ -16,11 +11,7 @@ export const Curso = () => {
     const mostrarCurso = async () => {
       try {
         const response = await obtenerCurso(id);
-        console.log("Response:", response); // Agrega un log para ver la respuesta
-
-        const data = response; // No es necesario response.data
-        console.log("Data:", data); // Agrega un log para ver los datos
-        setCurso(data);
+        setCurso(response);
       } catch (error) {
         console.error("Error al cargar el curso:", error);
       }
@@ -28,6 +19,20 @@ export const Curso = () => {
 
     mostrarCurso();
   }, [id]);
+
+  useEffect(() => {
+    // Crear el reproductor de YouTube después de que se cargue la API de YouTube
+    if (typeof YT !== "undefined" && typeof YT.Player !== "undefined" && curso) {
+      const player = new YT.Player("player", {
+        height: "315",
+        width: "560",
+        videoId: curso.modulo1.videoId, // Debes proporcionar el ID del video
+        playerVars: {
+          autoplay: 1, // Autoplay
+        },
+      });
+    }
+  }, [curso]);
 
   return (
     <>
@@ -94,7 +99,7 @@ export const Curso = () => {
                         </div>
                         <div class=" mt-10 border-t border-black/5"></div>
                         <div className="mt-10 grid grid-cols-1 gap-y-16 lg:grid-cols-1 lg:gap-x-8">
-                          <div>
+                          <div id="player">
                             <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
                               <iframe
                                 width="560"
