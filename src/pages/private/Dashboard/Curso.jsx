@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import useCurso from "../../../hooks/useCurso";
 import { useParams } from "react-router-dom";
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/20/solid";
 
 export const Curso = () => {
   const [curso, setCurso] = useState(null);
@@ -79,7 +84,7 @@ export const Curso = () => {
               {/* Comienza el mapeo */}
               {curso ? (
                 <div>
-                  <div className="">
+                  <div className="player">
                     <div className="mx-auto max-w-2xl px-4 py-5 sm:px-6  lg:max-w-7xl lg:px-8">
                       {/* Details section */}
                       <section aria-labelledby="details-heading">
@@ -99,7 +104,7 @@ export const Curso = () => {
                         </div>
                         <div class=" mt-10 border-t border-black/5"></div>
                         <div className="mt-10 grid grid-cols-1 gap-y-16 lg:grid-cols-1 lg:gap-x-8">
-                          <div id="player">
+                          <div>
                             <div className="aspect-h-1 aspect-w-3 w-full overflow-hidden rounded-lg">
                               <iframe
                                 width="560"
