@@ -26,16 +26,44 @@ export const Curso = () => {
   }, [id]);
 
   useEffect(() => {
-    // Crear el reproductor de YouTube después de que se cargue la API de YouTube
-    if (typeof YT !== "undefined" && typeof YT.Player !== "undefined" && curso) {
-      const player = new YT.Player("player", {
+    // Función para crear el reproductor de YouTube
+    function onYouTubeIframeAPIReady() {
+      new YT.Player("player", {
         height: "315",
         width: "560",
-        videoId: curso.modulo1.videoId, // Debes proporcionar el ID del video
+        videoId: curso.modulo1.videoId, // Reemplaza con el ID del video de YouTube
         playerVars: {
-          autoplay: 1, // Autoplay
+          autoplay: 1,
+        },
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
         },
       });
+    }
+
+    // Función para manejar el reproductor cuando está listo
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+
+    // Función para manejar los cambios de estado del reproductor
+    function onPlayerStateChange(event) {
+      // Puedes agregar lógica adicional aquí si es necesario
+    }
+
+    // Verifica si la API de YouTube ya está disponible
+    if (typeof YT !== "undefined" && typeof YT.Player !== "undefined" && curso) {
+      onYouTubeIframeAPIReady();
+    } else {
+      // Si la API de YouTube no está disponible, intenta cargarla de forma asíncrona
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // Establece una función global para que se llame una vez que la API esté cargada
+      window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
     }
   }, [curso]);
 
